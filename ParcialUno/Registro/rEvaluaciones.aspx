@@ -73,7 +73,7 @@
                         
                         <%--Perdido--%>
                       
-                            <asp:Label ID="Label2" runat="server" Text="Logrado">Logrado</asp:Label><br />
+                            <asp:Label ID="Label2" runat="server" Text="Perdido">Perdido</asp:Label><br />
                             <asp:TextBox ID="Perdido" runat="server" class="form-control input-sm"></asp:TextBox>
                             <br />
                             <br />
