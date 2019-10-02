@@ -9,72 +9,57 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class RepositorioEvaluacion:RepositorioBase<Evaluaciones>
+    public class RepositorioEvaluacion : RepositorioBase<Evaluaciones>
     {
-  
-        public override bool Guardar(Evaluaciones evaluacion)
+        public override Evaluaciones Buscar(int id)
         {
-            bool paso = false;
-            Contexto contexto = new Contexto();
-
-            try
-            {
-                if (contexto.Set<Evaluaciones>().Add(evaluacion) != null)
-                {
-                    contexto.SaveChanges();
-                    paso = true;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return paso;
-        }
-
-
-        public override bool Modificar(Evaluaciones evaluacion)
-        {
-            bool paso = false;
-            Contexto contexto = new Contexto();
-            try
-            {
-                contexto.Entry(evaluacion).State = EntityState.Modified;
-                if (contexto.SaveChanges() > 0)
-                {
-                    paso = true;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return paso;
-        }
-
-
-        public override bool Eliminar(int id)
-        {
-            bool paso = false;
+            Evaluaciones Evaluaciones = new Evaluaciones();
             Contexto db = new Contexto();
             try
             {
 
-
-                var eliminar = db.evaluaciones.Find(id);
-                db.Entry(eliminar).State = EntityState.Deleted;
-                paso = (db.SaveChanges() > 0);
+                Evaluaciones = db.evaluaciones.Include(x => x.Detalle)
+                    .Where(x => x.EvaluacionId == id).FirstOrDefault();
             }
             catch (Exception)
             {
                 throw;
             }
-            finally
+
+            return Evaluaciones;
+        }
+        public override bool Modificar(Evaluaciones evaluacion)
+        {
+            var Anterior = Buscar(evaluacion.EvaluacionId);
+            bool paso = false;
+
+            try
             {
-                db.Dispose();
+                using (Contexto contexto = new Contexto())
+                {
+                    foreach (var item in Anterior.Detalle.ToList())
+                    {
+                        if (!evaluacion.Detalle.Exists(d => d.DetalleId == item.DetalleId))
+                        {
+                            contexto.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                        }
+                    }
+                    contexto.SaveChanges();
+                }
+                foreach (var item in evaluacion.Detalle)
+                {
+                    var estado = item.DetalleId > 0 ? EntityState.Unchanged : EntityState.Added;
+                    _contexto.Entry(item).State = estado;
+                }
+                _contexto.Entry(evaluacion).State = EntityState.Modified;
+                if (_contexto.SaveChanges() > 0)
+                    paso = true;
+            }
+            catch
+            {
+                throw;
             }
             return paso;
         }
     }
 }
-

@@ -16,18 +16,29 @@ namespace Entidades
 
         public string Estudiante { get; set; }
         public DateTime Fecha { get; set; }
+        public decimal TotalPerdido { get; set; }
         public List<EvaluacionesDetalle> Detalle { get; set; }
 
+
+        public Evaluaciones(int evaluacionid, DateTime fecha, string estudiante, decimal totalPerdido)
+        {
+            EvaluacionId= evaluacionid;
+            Fecha = fecha;
+            Estudiante = estudiante;
+            TotalPerdido = totalPerdido;
+            Detalle = new List<EvaluacionesDetalle>();
+        }
         public Evaluaciones()
         {
             EvaluacionId = 0;
             Estudiante = string.Empty;
             Fecha = DateTime.Now;
+            TotalPerdido = 0;
             Detalle = new List<EvaluacionesDetalle>();
         }
-    public void AgregarDetalle(string categorias, decimal valor, decimal logrado, decimal perdido)
+    public void AgregarDetalle(int detalleID, int EvaluacionID,string categorias, decimal valor, decimal logrado, decimal perdido)
         {
-            this.AgregarDetalle(categorias, valor, logrado,perdido);
+            this.Detalle.Add(new EvaluacionesDetalle(detalleID,EvaluacionID,categorias, valor, logrado,perdido));
         }      
     }
 }

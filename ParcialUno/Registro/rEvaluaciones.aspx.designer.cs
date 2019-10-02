@@ -94,15 +94,6 @@ namespace ParcialUno.Registro {
         protected global::System.Web.UI.WebControls.TextBox CategoriaTextBox;
         
         /// <summary>
-        /// AgregarButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AgregarButton;
-        
-        /// <summary>
         /// Valor control.
         /// </summary>
         /// <remarks>
@@ -139,22 +130,31 @@ namespace ParcialUno.Registro {
         protected global::System.Web.UI.WebControls.TextBox LogradoTextBox;
         
         /// <summary>
-        /// Label2 control.
+        /// AgregarButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Button AgregarButton;
         
         /// <summary>
-        /// Perdido control.
+        /// DetalleGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Perdido;
+        protected global::System.Web.UI.WebControls.GridView DetalleGridView;
+        
+        /// <summary>
+        /// TotalTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TotalTextBox;
         
         /// <summary>
         /// NuevoButton control.
@@ -182,14 +182,5 @@ namespace ParcialUno.Registro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button EliminarButton;
-        
-        /// <summary>
-        /// DetalleGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DetalleGridView;
     }
 }
