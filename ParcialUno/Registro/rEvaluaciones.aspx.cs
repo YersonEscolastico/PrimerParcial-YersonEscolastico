@@ -97,7 +97,7 @@ namespace ParcialUno.Registro
             decimal perdidos = 0;
             perdidos = Utils.ToDecimal(ValorTextBox.Text) - Utils.ToDecimal(LogradoTextBox.Text);
 
-            evaluacion.AgregarDetalle(0, evaluacion.EvaluacionId, CategoriaTextBox.Text,Convert.ToDecimal( ValorTextBox.Text),Convert.ToDecimal( LogradoTextBox.Text),perdidos);
+            evaluacion.AgregarDetalle(0, Convert.ToInt32(EvaluacionIdTextBox.Text), CategoriaTextBox.Text,Convert.ToDecimal( ValorTextBox.Text),Convert.ToDecimal( LogradoTextBox.Text),perdidos);
 
             ViewState["Evaluaciones"] = evaluacion;
 
